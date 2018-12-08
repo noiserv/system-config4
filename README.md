@@ -1,1 +1,36 @@
-# system-config4
+# Bases de Dados - Entrega 5
+
+Nesta entrega é-nos pedido que optimizemos uma base de dados e criemos uma "data warehouse" para a o SGBD POSTGRES.
+
+
+
+## Coisas  a fazer
+
+A base de dados é igual à da entrega anterior.
+
+### Restrições de Integridade
+
+* **a)** e **b)**, possívelmente como triggers
+
+### Índices
+
+Os índices aumentam a velocidade de acesso aos dados. Podem ser simples ou compostos (mais que um dado) e têm que ser pensados com base nas frequências dos pedidos.
+
+### Modelo Multidimensional
+
+O modelo multidimensional utiliza a informação na parte relacional da base de dados e fatoriza-a em segmentos redundantes, mas que permitem a rápida análise de dados. Isto surge porque uma típica filtragem de dados para análise corresponde a um join de quase todas as tabelas. Para evitar esse processamento cria-se este modelo.
+
+o modelo é composto pelos factos:
+
+* **d_evento**(idEvento, numTelefone, instanteChamada)
+* **d_meio**(idMeio, numMeio, nomeMeio, nomeEntidade, tipo)
+* **d_tempo**(dia, mes, ano)
+
+que estão na forma normal 1 (podem ser redundantes) e uma parte que corresponde a todas as entradas com esses factos. Ver esquema em estrela dos slides.
+
+
+
+### Data Analytics
+
+* obter o número de meios de cada tipo utilizados no evento número 15, com
+  rollup por ano e mês.
