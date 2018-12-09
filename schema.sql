@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS camara cascade;
+DROP TABLE IF EXISTS camara cascade;
 DROP TABLE IF EXISTS video cascade;
 DROP TABLE IF EXISTS segmentoVideo cascade;
 DROP TABLE IF EXISTS zona cascade;
@@ -52,7 +52,7 @@ CREATE TABLE vigia (
   moradaLocal VARCHAR(255) NOT NULL,
   camNum integer NOT NULL,
   PRIMARY KEY(moradaLocal,camNum),
-  FOREIGN KEY(camNum) REFERENCES camara(camNum)  ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY(camNum) REFERENCES camara(camNum)  ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY(moradaLocal) REFERENCES zona(moradaLocal)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
