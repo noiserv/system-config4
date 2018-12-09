@@ -29,8 +29,15 @@ o modelo é composto pelos factos:
 que estão na forma normal 1 (podem ser redundantes) e uma parte que corresponde a todas as entradas com esses factos. Ver esquema em estrela dos slides.
 
 
-
 ### Data Analytics
 
 * obter o número de meios de cada tipo utilizados no evento número 15, com
   rollup por ano e mês.
+
+
+### Testing
+WARNING: in order to test the database, a certain order needs to be respected
+1. Load `schema.sql`   -- to remove old tables and setup the new schema as well as triggers
+3. Load `populate.sql` -- to populate the database
+4. Load `dataWarehouse.sql` -- to setup the fact analysis database
+5. Load `dataPopulate.sql`  -- to populate the
