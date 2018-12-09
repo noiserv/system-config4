@@ -29,8 +29,22 @@ o modelo é composto pelos factos:
 que estão na forma normal 1 (podem ser redundantes) e uma parte que corresponde a todas as entradas com esses factos. Ver esquema em estrela dos slides.
 
 
-
 ### Data Analytics
 
 * obter o número de meios de cada tipo utilizados no evento número 15, com
   rollup por ano e mês.
+
+
+### Testing
+WARNING: in order to test the database, a certain order needs to be respected
+1. Load `schema.sql`   -- to remove old tables and setup the new schema as well as triggers
+3. Load `populate.sql` -- to populate the database
+4. Load `dataWarehouse.sql` -- to setup the fact analysis database
+5. Load `dataPopulate.sql`  -- to populate the facts
+
+### Questions & Doubts
+* time has no id. Is that supposed to happen?
+* the new restrictions imply changing the populate. Is that required?
+* in the data warehouse some structures are clearly redundant. One example is the
+type of "meio" which could be just a number but instread is VARCHAR(255), which must
+us up a lot of unecessary space. Is this true or does the DB compensate for that?
