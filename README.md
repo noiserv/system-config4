@@ -41,3 +41,7 @@ WARNING: in order to test the database, a certain order needs to be respected
 3. Load `populate.sql` -- to populate the database
 4. Load `dataWarehouse.sql` -- to setup the fact analysis database
 5. Load `dataPopulate.sql`  -- to populate the facts
+
+### Questions & Doubts
+* time has no id. Is that supposed to happen?
+* the new restrictions imply changing the populate. Is that required?
