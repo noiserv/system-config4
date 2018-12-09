@@ -462,7 +462,6 @@ INSERT INTO zona VALUES ('Alameda das Linhas de Torres, Quiosque Carris');
 INSERT INTO zona VALUES ('Campo Grande, Frente 1B (Entrecampos)');
 INSERT INTO zona VALUES ('Avenida Infante Dom Henrique, Junto Estação Sul e Sueste');
 
-INSERT INTO vigia VALUES ('Avenida Miguel Bombarda, Frente 68- jardim', '0');
 INSERT INTO vigia VALUES ('Largo do Carmo, Placa Central', '1');
 INSERT INTO vigia VALUES ('Avenida Fontes Pereira de Melo, Junto Rua Pinheiro Chagas', '2');
 INSERT INTO vigia VALUES ('Oliveira do Hospital', '3');
@@ -562,6 +561,7 @@ INSERT INTO vigia VALUES ('Rua Paulo Renato(antiga Rua 1 à Estrada de Benfica),
 INSERT INTO vigia VALUES ('Rua Andrade Corvo, Junto 10', '97');
 INSERT INTO vigia VALUES ('Avenida Almirante Reis, Junto 1', '98');
 INSERT INTO vigia VALUES ('Cais do Sodré, Jardim Roque Gameiro', '99');
+INSERT INTO vigia VALUES ('Avenida Miguel Bombarda, Frente 68- jardim', '100');
 
 INSERT INTO processoSocorro VALUES ('0');
 INSERT INTO processoSocorro VALUES ('1');

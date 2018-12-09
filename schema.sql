@@ -50,8 +50,9 @@ CREATE TABLE zona (
 
 CREATE TABLE vigia (
   moradaLocal VARCHAR(255) NOT NULL,
-  camNum integer NOT NULL ,
+  camNum integer NOT NULL,
   PRIMARY KEY(moradaLocal,camNum),
+  FOREIGN KEY(camNum) REFERENCES camara(camNum)  ON DELETE CASCADE ON UPDATE CASCADE
   FOREIGN KEY(moradaLocal) REFERENCES zona(moradaLocal)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -63,8 +64,8 @@ CREATE TABLE processoSocorro (
 CREATE TABLE eventoEmergencia (
   nomePessoa VARCHAR(255) NOT NULL,
   moradaLocal VARCHAR(255) NOT NULL,
-  numProcessoSocorro NUMERIC(255) NOT NULL, 
-  numTelefone NUMERIC(255) NOT NULL, 
+  numProcessoSocorro NUMERIC(255) NOT NULL,
+  numTelefone NUMERIC(255) NOT NULL,
   instanteChamada TIMESTAMP NOT NULL,
   PRIMARY KEY(numTelefone, instanteChamada),
   FOREIGN KEY(moradaLocal) REFERENCES zona(moradaLocal),
