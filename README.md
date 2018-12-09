@@ -45,3 +45,6 @@ WARNING: in order to test the database, a certain order needs to be respected
 ### Questions & Doubts
 * time has no id. Is that supposed to happen?
 * the new restrictions imply changing the populate. Is that required?
+* in the data warehouse some structures are clearly redundant. One example is the
+type of "meio" which could be just a number but instread is VARCHAR(255), which must
+us up a lot of unecessary space. Is this true or does the DB compensate for that?
