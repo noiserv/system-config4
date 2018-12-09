@@ -8,7 +8,6 @@ CREATE TABLE d_evento(
   numTelefone VARCHAR(26) NOT NULL,
   instanteChamada TIMESTAMP NOT NULL,
   PRIMARY KEY(idEvento)
-
 );
 
 CREATE TABLE d_meio(
@@ -20,7 +19,6 @@ CREATE TABLE d_meio(
 );
 
 CREATE TABLE d_tempo(
-  idTempo SERIAL UNIQUE,
   dia INTEGER NOT NULL ,
   mes INTEGER NOT NULL,
   ano INTEGER NOT NULL,
@@ -35,5 +33,4 @@ CREATE TABLE factos(
   PRIMARY KEY(idFacto),
   FOREIGN KEY(idEvento) REFERENCES d_evento(idEvento),
   FOREIGN KEY(idMeio) REFERENCES d_meio(idMeio),
-  FOREIGN KEY(idTempo) REFERENCES d_tempo(idTempo)
 );
