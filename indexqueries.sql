@@ -32,9 +32,10 @@ DROP INDEX video_cam;
 DROP INDEX vigia_cm;
 
 --2) Para a segunda interrogcao faz sentido criar os seguintes indices:
-CREATE INDEX evento_numP ON eventoEmergencia USING HASH(numProcessoSocorro); --INDICE DENSO E DASAGRUPADO
 CREATE INDEX trans_numP ON transporta USING HASH(numProcessoSocorro); --INDICE DENSO E DASAGRUPADO
-CREATE INDEX evento_numTinstC ON eventoEmergencia USING BTREE(numTelefone,instanteChamada); --INDICE ESPARSO E AGRUPADO UMA DAS COLUNAS
+CREATE INDEX evento_numTinstC ON eventoEmergencia USING BTREE(numTelefone,instanteChamada,numProcessoSocorro); --INDICE ESPARSO E AGRUPADO UMA DAS COLUNAS
+
+
 
 EXPLAIN SELECT​​ ​sum​​(numVitimas)
 FROM transporta T, eventoEmergencia E
