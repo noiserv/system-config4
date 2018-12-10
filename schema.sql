@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS camara cascade;
+DROP TABLE IF EXISTS camara cascade;
 DROP TABLE IF EXISTS video cascade;
 DROP TABLE IF EXISTS segmentoVideo cascade;
 DROP TABLE IF EXISTS zona cascade;
