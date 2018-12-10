@@ -17,7 +17,7 @@
 --Assuming there is no previous indexes, we need to create the following indexes:
 CREATE INDEX video_cam ON video USING HASH(camNum); --INDICE DENSO E DASAGRUPADO
  -- For WHERE conditions using =, it´s easiar to use HASH than BTREE
-CREATE INDEX vigia_cm ON vigia USING BTREE(camNum,moradaLocal); --INDICE ESPARSO E AGRUPADO
+CREATE INDEX vigia_cm ON vigia USING BTREE(camNum,moradaLocal); --INDICE ESPARSO E AGRUPADO  UMA DAS COLUNAS
 -- Create indexes for foreing keys , impossible to use HASH for multiple collums, so we use BTREE
 EXPLAIN SELECT dataHoraInicio, dataHoraFim
  FROM video V, vigia I
@@ -32,18 +32,22 @@ DROP INDEX video_cam;
 DROP INDEX vigia_cm;
 
 --2) Para a segunda interrogcao faz sentido criar os seguintes indices:
-CREATE INDEX evento_numP ON eventoEmergencia USING HASH(numProcessoSocorro);
-CREATE INDEX trans_numP ON transporta USING HASH(numProcessoSocorro);
-CREATE INDEX evento_numTinstC ON eventoEmergencia USING BTREE(numTelefone,instanteChamada);  --O nosso populate faz com que este group by seja muito seletivo, pleo que nao e' necessario uso de indices
+CREATE INDEX evento_numP ON eventoEmergencia USING HASH(numProcessoSocorro); --INDICE DENSO E DASAGRUPADO
+CREATE INDEX trans_numP ON transporta USING HASH(numProcessoSocorro); --INDICE DENSO E DASAGRUPADO
+CREATE INDEX evento_numTinstC ON eventoEmergencia USING BTREE(numTelefone,instanteChamada); --INDICE ESPARSO E AGRUPADO UMA DAS COLUNAS
 
 EXPLAIN SELECT​​ ​sum​​(numVitimas)
 FROM transporta T, eventoEmergencia E
 WHERE T.numProcessoSocorro = E.numProcessoSocorro
 GROUP BY ​​numTelefone, instanteChamada
-
+--It was necessary to run "set enable_seqscan=false;" because our populate made the database ignore the indexes
 --Runing the query without the indexes we have 7 rows in total, with a time of execution equal to 92 msec
---Runing the query with the indexes we have 5 rows  in total, with a time of execution equal to 48 msec
+--Runing the query with the indexes we have 6 rows  in total, with a time of execution equal to 48 msec
 
+--ERASING THE INDEXES:
+DROP INDEX evento_numP;
+DROP INDEX trans_numP;
+DROP INDEX evento_numTinstC;
 
 --HOW TO DROP INDEXES
 --DROP INDEX index_name
