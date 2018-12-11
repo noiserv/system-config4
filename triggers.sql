@@ -3,20 +3,17 @@
 
 CREATE OR REPLACE FUNCTION solicita_permit() RETURNS TRIGGER AS $body$
     DECLARE success INT;
-    DECLARE morada VARCHAR(255);
     BEGIN
-    morada  := (SELECT moradaLocal FROM vigia
-                  WHERE new.camNum = camNum);
-    success := (SELECT count(*) FROM audita NATURAL JOIN eventoEmergencia
+
+    success :=  (SELECT count(*) FROM audita NATURAL JOIN eventoEmergencia
               NATURAL JOIN vigia
-              WHERE idCoordenador = new.idCoordenador
-              AND   moradaLocal   = morada
-              AND   dataAuditoria <= NOW()
-            );
+              WHERE idCoordenador = new.idcoordenador
+             AND camNum = new.camnum);
     IF success = 0 THEN
         RAISE EXCEPTION 'restriction a) violated when inserting %', new ;
+    ELSE
+      RETURN new;
     END IF;
-    RETURN new;
   END;
 $body$ LANGUAGE plpgsql;
 
@@ -44,8 +41,9 @@ CREATE OR REPLACE FUNCTION accionado_before_alocado() RETURNS TRIGGER AS $body$
             );
     IF success = 0 THEN
         RAISE EXCEPTION 'restriction b) violated';
+	ELSE
+		RETURN new;
     END IF;
-    RETURN new;
   END;
 $body$ LANGUAGE plpgsql;
 
