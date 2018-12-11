@@ -19,20 +19,21 @@ CREATE TABLE d_meio(
 );
 
 CREATE TABLE d_tempo(
-  idTempo SERIAL UNIQUE,
   dia INTEGER NOT NULL ,
   mes INTEGER NOT NULL,
   ano INTEGER NOT NULL,
-  PRIMARY KEY(idTempo)
+  PRIMARY KEY(dia,mes,ano)
 );
 
 CREATE TABLE factos(
   idFacto INTEGER,
   idEvento INTEGER,
   idMeio INTEGER,
-  idTempo INTEGER,
+  dia INTEGER NOT NULL ,
+  mes INTEGER NOT NULL,
+  ano INTEGER NOT NULL,
   PRIMARY KEY(idFacto),
   FOREIGN KEY(idEvento) REFERENCES d_evento(idEvento),
   FOREIGN KEY(idMeio) REFERENCES d_meio(idMeio),
-  FOREIGN KEY(idTempo) REFERENCES d_tempo(idTempo)
+  FOREIGN KEY(dia,mes,ano) REFERENCES d_tempo(dia,mes,ano)
 );

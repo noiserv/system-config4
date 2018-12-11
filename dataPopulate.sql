@@ -12,8 +12,7 @@ INSERT INTO d_tempo(dia,mes,ano)
 SELECT extract(day from instanteChamada) AS dia,extract(month from instanteChamada) as mes, extract(year from instanteChamada) as ano FROM eventoEmergencia;
 
 INSERT INTO factos(idEvento,idMeio,idTempo)
-SELECT e.idEvento,m.idMeio,t.idTempo,f.idFacto
+SELECT e.idEvento,m.idMeio,t.idTempo
 FROM d_evento e
 INNER JOIN d_meio m ON e.idEvento=m.idMeio
-INNER JOIN d_tempo t ON m.idMeio=t.idTempo
-INNER JOIN factos f ON f.idFacto=e.idEvento
+INNER JOIN d_tempo t ON m.idMeio=t.idTempo --colocar data, usar produto das cartesianas??
