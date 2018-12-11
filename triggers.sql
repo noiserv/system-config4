@@ -18,7 +18,7 @@ CREATE OR REPLACE FUNCTION solicita_permit() RETURNS TRIGGER AS $body$
 $body$ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS solicita_permit on solicita;
-CREATE TRIGGER solicita_permit BEFORE INSERT ON solicita
+CREATE TRIGGER solicita_permit BEFORE INSERT OR UPDATE ON solicita
   FOR EACH ROW EXECUTE PROCEDURE solicita_permit();
 
 
@@ -48,5 +48,5 @@ CREATE OR REPLACE FUNCTION accionado_before_alocado() RETURNS TRIGGER AS $body$
 $body$ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS accionado_before_alocado on alocado;
-CREATE TRIGGER accionado_before_alocado BEFORE INSERT ON alocado
+CREATE TRIGGER accionado_before_alocado BEFORE INSERT OR UPDATE ON alocado
   FOR EACH ROW EXECUTE PROCEDURE accionado_before_alocado();
