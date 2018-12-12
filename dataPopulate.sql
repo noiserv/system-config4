@@ -23,10 +23,8 @@ from generate_series((SELECT min(instanteChamada) -- min
 			FROM eventoEmergencia), '1day') AS timerange;
 
 /* Creation of the Facts Table */
-/*
 INSERT INTO factos(idEvento,idMeio,tempo_id)
-SELECT e.idEvento,m.idMeio,t.tempo_id
-FROM d_evento e
-INNER JOIN d_meio m ON e.idEvento=m.idMeio
-INNER JOIN d_tempo t ON m.idMeio=t.tempo_id --colocar data, usar produto das cartesianas??
-*/
+SELECT idEvento,idMeio,tempo_id
+FROM d_evento
+CROSS JOIN d_meio
+CROSS JOIN d_tempo;  --colocar data, usar produto das cartesianas?? cross join e' o produto cartesiano

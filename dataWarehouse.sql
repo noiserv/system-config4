@@ -58,7 +58,7 @@ CREATE TABLE d_tempo(
 );
 
 CREATE TABLE factos(
-  idFacto INTEGER,
+  idFacto SERIAL UNIQUE,
   idEvento INTEGER,
   idMeio INTEGER,
   tempo_id INTEGER,
