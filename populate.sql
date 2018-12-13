@@ -1777,6 +1777,7 @@ INSERT INTO meioSocorro VALUES ('2','OTEPEDYKWQ');
 INSERT INTO meio VALUES ('3','Assucena','VVLNGXYUJD');
 INSERT INTO meioCombate VALUES ('3','VVLNGXYUJD');
 INSERT INTO meio VALUES ('4','Lázaro','RHRHLBZQYM');
+INSERT INTO meioCombate VALUES ('4','RHRHLBZQYM'); --testar o insert em factos
 INSERT INTO meioApoio VALUES ('4','RHRHLBZQYM');
 INSERT INTO meio VALUES ('5','Alan','UYWNVKAGEX');
 INSERT INTO meioSocorro VALUES ('5','UYWNVKAGEX');

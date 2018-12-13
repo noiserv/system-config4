@@ -36,7 +36,7 @@ $body$ LANGUAGE plpgsql;
 
 CREATE TABLE d_evento(
   idEvento SERIAL UNIQUE,
-  numTelefone VARCHAR(26) NOT NULL,
+  numTelefone NUMERIC(255) NOT NULL,
   instanteChamada TIMESTAMP NOT NULL,
   PRIMARY KEY(idEvento)
 );
@@ -50,7 +50,7 @@ CREATE TABLE d_meio(
 );
 
 CREATE TABLE d_tempo(
-  tempo_id INTEGER NOT NULL,
+  tempo_id INTEGER NOT NULL, --SERIAL UNIQUE EM CASO DE SER SEQUENCIAL 
   dia INTEGER NOT NULL ,
   mes INTEGER NOT NULL,
   ano INTEGER NOT NULL,

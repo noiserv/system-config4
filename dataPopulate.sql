@@ -12,6 +12,12 @@ SELECT numMeio, nomeEntidade,'Socorro' FROM meioSocorro;
 
 
 /* insertion of the time range from the oldest instantechamada to the newest */
+--SE FOR NUMERO SEQUENCIAL
+--INSERT INTO d_tempo(dia,mes,ano)
+--SELECT extract(day from instanteChamada) AS dia,
+--extract(month from instanteChamada) as mes,
+-- extract(year from instanteChamada) as ano FROM eventoEmergencia;
+
 INSERT INTO d_tempo(tempo_id,dia,mes,ano)
 select getTime_id(timerange),
        extract(day FROM timerange),
