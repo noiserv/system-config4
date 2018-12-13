@@ -1,22 +1,13 @@
-﻿
-DROP TABLE IF EXISTS d_evento CASCADE;
-DROP TABLE IF EXISTS d_meio CASCADE;
-DROP TABLE IF EXISTS d_tempo CASCADE;
-DROP TABLE IF EXISTS factos CASCADE;
+﻿DROP TABLE IF EXISTS factos;
+DROP TABLE IF EXISTS d_evento;
+DROP TABLE IF EXISTS d_meio;
+DROP TABLE IF EXISTS d_tempo;
+
 
 CREATE OR REPLACE FUNCTION getTime_id (tempo timestamp) RETURNS INTEGER AS $body$
-  DECLARE dia INTEGER := extract( day FROM (
-			SELECT min(instanteChamada)
-			FROM eventoEmergencia
-			));
-  DECLARE mes INTEGER := extract( month FROM (
-				SELECT min(instanteChamada)
-				FROM eventoEmergencia
-				));
-  DECLARE ano INTEGER := extract( year FROM (
-				SELECT min(instanteChamada)
-				FROM eventoEmergencia
-				));
+  DECLARE dia INTEGER := extract( day FROM timestamp);
+  DECLARE mes INTEGER := extract( month FROM timestamp);
+  DECLARE ano INTEGER := extract( year FROM timestamp);
   BEGIN
     return dia  + mes*100 + ano * 10000 ;
   END;
