@@ -1,4 +1,4 @@
-INSERT INTO d_evento(numTelefone,instanteChamada)
+﻿INSERT INTO d_evento(numTelefone,instanteChamada)
 SELECT numTelefone, instanteChamada FROM eventoEmergencia;
 
 INSERT INTO d_meio(numMeio,nomeMeio,nomeEntidade,tipo)
@@ -23,13 +23,9 @@ from generate_series((SELECT min(instanteChamada) -- min
 			FROM eventoEmergencia), '1day') AS timerange;
 
 /* Creation of the Facts Table */
-
 INSERT INTO factos(idEvento,idMeio,tempo_id)
-select idEvento,idMeio,getTime_id(timerange)
-from generate_series((SELECT min(instanteChamada) -- min
-			FROM eventoEmergencia),
-		      (SELECT max(instanteChamada)
-			FROM eventoEmergencia), '1day') AS timerange
-NATURAL JOIN eventoEmergencia NATURAL JOIN d_evento
+select idEvento,idMeio,getTime_id(instanteChamada) as tempo
+FROM eventoEmergencia
+NATURAL JOIN d_evento
+JOIN d_tempo ON (getTime_id(eventoEmergencia.instanteChamada) = d_tempo.tempo_id)
 NATURAL JOIN d_meio NATURAL JOIN acciona;
-
