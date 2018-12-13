@@ -5,9 +5,9 @@ DROP TABLE IF EXISTS d_tempo;
 
 
 CREATE OR REPLACE FUNCTION getTime_id (tempo timestamp) RETURNS INTEGER AS $body$
-  DECLARE dia INTEGER := extract( day FROM timestamp);
-  DECLARE mes INTEGER := extract( month FROM timestamp);
-  DECLARE ano INTEGER := extract( year FROM timestamp);
+  DECLARE dia INTEGER := extract( day FROM (tempo));
+  DECLARE mes INTEGER := extract( month FROM (tempo));
+  DECLARE ano INTEGER := extract( year FROM (tempo));
   BEGIN
     return dia  + mes*100 + ano * 10000 ;
   END;
