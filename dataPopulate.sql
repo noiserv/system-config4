@@ -32,6 +32,4 @@ from generate_series((SELECT min(instanteChamada) -- min
 			FROM eventoEmergencia), '1day') AS timerange
 NATURAL JOIN eventoEmergencia NATURAL JOIN d_evento
 NATURAL JOIN d_meio NATURAL JOIN acciona;
-select * from factos;
-select * from d_meio;
-select * from d_evento;
+
