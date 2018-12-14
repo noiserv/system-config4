@@ -1,6 +1,4 @@
--- a) Um Coordenador só pode solicitar vídeos de câmaras colocadas num local cujo
--- accionamento de meios esteja a ser (ou tenha sido) auditado por ele próprio.
-
+--###########--------------- a) ---------------###########
 CREATE OR REPLACE FUNCTION solicita_permit() RETURNS TRIGGER AS $body$
     DECLARE success INT;
     BEGIN
@@ -21,15 +19,7 @@ DROP TRIGGER IF EXISTS solicita_permit on solicita;
 CREATE TRIGGER solicita_permit BEFORE INSERT OR UPDATE ON solicita
   FOR EACH ROW EXECUTE PROCEDURE solicita_permit();
 
-
--- b) Um Meio de Apoio só pode ser alocado a Processos de Socorro para os quais tenha
--- sido accionado.
-
--- uma maneira alterativa de fazer isto seria adicionar uma foreign key a acciona
--- FOREIGN KEY(numMeio, nomeEntidade,numProcessoSocorro) REFERENCES alocado(numMeio, nomeEntidade,numProcessoSocorro)
--- em vez das outras foreign keys
--- FIXME perguntar aos profes se podemos alterar o modelo relacional para a restricao FIXME
-
+--###########--------------- b) ---------------###########
 CREATE OR REPLACE FUNCTION accionado_before_alocado() RETURNS TRIGGER AS $body$
     DECLARE success INT;
     DECLARE morada VARCHAR(255);
