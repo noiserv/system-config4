@@ -48,8 +48,8 @@ DROP INDEX IF EXISTS evento_numTinstC;
 --como provavelmente as tabelas "transporta" e "eventoEmergencia"
 --sofreram muitas alterações é mais eficiente escolher indices árvore B+
 --devido a sua boa adptacao com inserções e remoções:
-CREATE INDEX trans_numP ON transporta(numProcessoSocorro);
-CREATE INDEX even_numP ON eventoEmergencia(numProcessoSocorro);
+CREATE INDEX trans_numP ON transporta USING BTREE(numProcessoSocorro);
+CREATE INDEX even_numP ON eventoEmergencia USING BTREE(numProcessoSocorro);
 --Agora observando a condição GROUP BY é necessário criar um indice composto
 --árvore B+ :
-CREATE INDEX evento_numTinstC ON eventoEmergencia(numTelefone,instanteChamada);
+CREATE INDEX evento_numTinstC ON eventoEmergencia USING BTREE(numTelefone,instanteChamada);
