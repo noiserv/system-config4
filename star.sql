@@ -3,7 +3,8 @@ DROP TABLE IF EXISTS d_evento;
 DROP TABLE IF EXISTS d_meio;
 DROP TABLE IF EXISTS d_tempo;
 
-CREATE OR REPLACE FUNCTION getTime_id (tempo timestamp) RETURNS INTEGER AS $body$
+CREATE OR REPLACE FUNCTION getTime_id (tempo timestamp)
+  RETURNS INTEGER AS $body$
   DECLARE dia INTEGER := extract( day FROM (tempo));
   DECLARE mes INTEGER := extract( month FROM (tempo));
   DECLARE ano INTEGER := extract( year FROM (tempo));
@@ -12,10 +13,11 @@ CREATE OR REPLACE FUNCTION getTime_id (tempo timestamp) RETURNS INTEGER AS $body
   END;
 $body$ LANGUAGE plpgsql;
 
-/** Function that generates the time intervals from a given minimum to a given maximum from
- **/
+/** Function that generates the time intervals
+ * from a given minimum to a given maximum  **/
 CREATE OR REPLACE FUNCTION genTimeIntervals(min timestamp,
-                                            max timestamp) RETURNS TABLE (tempo timestamp) AS $body$
+                                            max timestamp)
+  RETURNS TABLE (tempo timestamp) AS $body$
   BEGIN
 	return QUERY SELECT current_date + i
 		FROM generate_series(min - current_date,
@@ -62,13 +64,16 @@ INSERT INTO d_evento(numTelefone,instanteChamada)
 SELECT numTelefone, instanteChamada FROM eventoEmergencia;
 
 INSERT INTO d_meio(numMeio,nomeMeio,nomeEntidade,tipo)
-SELECT numMeio,nomeMeio, nomeEntidade,'Apoio' FROM meioApoio NATURAL JOIN meio;
+SELECT numMeio,nomeMeio, nomeEntidade,'Apoio'
+FROM meioApoio NATURAL JOIN meio;
 
 INSERT INTO d_meio(numMeio,nomeMeio,nomeEntidade,tipo)
-SELECT numMeio,nomeMeio, nomeEntidade,'Combate' FROM meioCombate  NATURAL JOIN meio;
+SELECT numMeio,nomeMeio, nomeEntidade,'Combate'
+FROM meioCombate  NATURAL JOIN meio;
 
 INSERT INTO d_meio(numMeio,nomeMeio,nomeEntidade,tipo)
-SELECT numMeio,nomeMeio, nomeEntidade,'Socorro' FROM meioSocorro  NATURAL JOIN meio;
+SELECT numMeio,nomeMeio, nomeEntidade,'Socorro'
+FROM meioSocorro  NATURAL JOIN meio;
 
 INSERT INTO d_tempo(tempo_id,dia,mes,ano)
 select getTime_id(timerange),
@@ -84,5 +89,6 @@ INSERT INTO factos(idEvento,idMeio,tempo_id)
 select idEvento,idMeio,getTime_id(instanteChamada) as tempo
 FROM eventoEmergencia
 NATURAL JOIN d_evento
-JOIN d_tempo ON (getTime_id(eventoEmergencia.instanteChamada) = d_tempo.tempo_id)
+JOIN d_tempo
+ON (getTime_id(eventoEmergencia.instanteChamada) = d_tempo.tempo_id)
 NATURAL JOIN d_meio NATURAL JOIN acciona;
